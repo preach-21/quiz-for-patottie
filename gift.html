@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Patottie ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe4e1;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff69b4;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        .options {
+            text-align: left;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        .heart-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .heart {
+            font-size: 100px;
+            color: #ff69b4;
+        }
+        .message {
+            font-size: 24px;
+            color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Patottie ❤️</h1>
+        <form id="quizForm">
+            <!-- First Question -->
+            <div class="question">
+                <p>What's my favorite part of you?</p>
+                <div class="options">
+                    <label><input type="radio" name="question1" value="A"> Eyes</label>
+                    <label><input type="radio" name="question1" value="B"> Smile</label>
+                    <label><input type="radio" name="question1" value="C"> Hair</label>
+                    <label><input type="radio" name="question1" value="D"> Eyes</label>
+                    <label><input type="radio" name="question1" value="E"> A and D</label>
+                    <label><input type="radio" name="question1" value="F"> All but mostly A and B</label>
+                </div>
+            </div>
+
+            <!-- Second Question -->
+            <div class="question">
+                <p>What's the favorite nickname to call you?</p>
+                <div class="options">
+                    <label><input type="radio" name="question2" value="A"> Boni</label>
+                    <label><input type="radio" name="question2" value="B"> Rue</label>
+                    <label><input type="radio" name="question2" value="C"> Bon Bon</label>
+                    <label><input type="radio" name="question2" value="D"> Patottie</label>
+                    <label><input type="radio" name="question2" value="E"> My digestion system</label>
+                </div>
+            </div>
+
+            <!-- Third Question -->
+            <div class="question">
+                <p>What's my favorite trait of yours?</p>
+                <div class="options">
+                    <label><input type="radio" name="question3" value="A"> Your kindness</label>
+                    <label><input type="radio" name="question3" value="B"> Your freakiness</label>
+                    <label><input type="radio" name="question3" value="C"> Your astonishing ability to decide</label>
+                    <label><input type="radio" name="question3" value="D"> Eyes</label>
+                    <label><input type="radio" name="question3" value="F"> All except C</label>
+                </div>
+            </div>
+
+            <!-- Fourth Question -->
+            <div class="question">
+                <p>Which destination for vacation did we discuss?</p>
+                <div class="options">
+                    <label><input type="radio" name="question4" value="A"> Paris</label>
+                    <label><input type="radio" name="question4" value="B"> Jemo</label>
+                    <label><input type="radio" name="question4" value="C"> Japan</label>
+                    <label><input type="radio" name="question4" value="D"> Bahamas</label>
+                    <label><input type="radio" name="question4" value="E"> Tuludimtu</label>
+                </div>
+            </div>
+
+            <button type="button" onclick="checkAnswers()">Submit</button>
+        </form>
+        <p id="result"></p>
+        <div class="heart-container" id="heartContainer">
+            <div class="heart">❤️</div>
+            <div class="message">Smash!</div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const correctAnswers = {
+                question1: "F",
+                question2: "C",
+                question3: "F",
+                question4: "D"
+            };
+            
+            let score = 0;
+            const form = document.getElementById('quizForm');
+            const formData = new FormData(form);
+
+            for (let [question, answer] of formData.entries()) {
+                if (correctAnswers[question] === answer) {
+                    score++;
+                }
+            }
+
+            const result = document.getElementById('result');
+            const heartContainer = document.getElementById('heartContainer');
+            
+            if (score === Object.keys(correctAnswers).length) {
+                result.textContent = `You got all ${score} answers correct!`;
+                heartContainer.style.display = 'block';
+            } else {
+                result.textContent = `You got ${score} out of ${Object.keys(correctAnswers).length} correct!`;
+                heartContainer.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
